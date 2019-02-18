@@ -1,26 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+// add the React Router module
+// the main thing we ned is BrowserRouter
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import About from './About';
+import Home from './Home';
+import MovieList from './MovieList';
+
 
 class App extends Component {
   render() {
+    // The router goes around EVERYTHING it needs to control
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+        <ul>
+          {/* In react router, we don't use <a>, that's so 2015. */}
+          {/* <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li> */}
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to ="/movies">Movies</Link>
+        </ul>
+        {/* Use the Route comonent to set up a path match */}
+        {/* if the path matches the browser path, it will render */}
+        {/* whatever is given as component prop */}
+        {/* If you have path by itself, it will look for that in the URL  */}
+        {/* To restrict to exact, use exact */}
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path ="/movies" component={MovieList} /> 
+        </div>
+      </Router>
     );
   }
 }
