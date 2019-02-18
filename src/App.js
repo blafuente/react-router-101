@@ -6,10 +6,12 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import About from './About';
 import Home from './Home';
 import MovieList from './MovieList';
+import Movie from './Movie';
 
 
 class App extends Component {
   render() {
+    const superHero = "Iron Man";
     // The router goes around EVERYTHING it needs to control
     return (
       <Router>
@@ -27,9 +29,13 @@ class App extends Component {
         {/* whatever is given as component prop */}
         {/* If you have path by itself, it will look for that in the URL  */}
         {/* To restrict to exact, use exact */}
-          <Route exact path="/" component={Home} />
+          {/* <Route exact path="/" component={Home} /> */}
+          <Route exact path="/" render={(props)=>{
+            return(<Home superHero={superHero} /> )
+          }} />
           <Route path="/about" component={About} />
           <Route path ="/movies" component={MovieList} /> 
+          <Route path ="/movies/:movieId" component={Movie} />
         </div>
       </Router>
     );

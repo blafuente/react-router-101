@@ -33,6 +33,7 @@ class Movies extends Component{
 			return(
 				<Link to={`/movies/${movie.id}`} key={index}>
 					<h3>{movie.title}</h3>
+                    <img src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`} />
 				</Link>
 			)
 		});
